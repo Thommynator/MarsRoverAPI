@@ -2,7 +2,7 @@
 let roverButtons = document.getElementsByName('rover-button');
 roverButtons.forEach(button => {
     button.addEventListener('click', () =>  {
-        document.getElementById('selected-rover').value =  button.value;
+        document.getElementById('rover').value =  button.value;
 
         // deselect all buttons:
         document.getElementsByName('rover-button').forEach(b => {

@@ -25,4 +25,8 @@ public class MarsRoverApiService {
             throw e;
         }
     }
+
+    public PhotoApiResponse getEmptyData(String roverType, int sol) {
+        return new PhotoApiResponse();
+    }
 }
