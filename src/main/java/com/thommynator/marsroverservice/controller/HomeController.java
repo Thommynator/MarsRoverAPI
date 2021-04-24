@@ -30,11 +30,12 @@ public class HomeController {
     @GetMapping("/")
     public String homeView(@ModelAttribute FormData formData, ModelMap model) {
 
+        PhotoApiResponse roverData = new PhotoApiResponse();
         if (formData.getSelectedCameras() == null || formData.getSelectedCameras().isEmpty()) {
-            formData = createDefaultFormData(formData);
+            createDefaultFormData(formData);
+        } else {
+            roverData = roverService.getRoverData(formData);
         }
-
-        PhotoApiResponse roverData = roverService.getRoverData(formData);
 
         resetCameras(formData);
         model.put("roverData", roverData);

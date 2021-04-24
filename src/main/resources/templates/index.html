@@ -40,83 +40,37 @@
                 </div>
             </div>
 
+
+            <!-- CAMERAS -->
+            <!-- Represents the 9 cameras in 3x3 rows & cols.
+            It will automatically reduce to 1 column, if the window gets smaller.
+            Taken from here: https://stackoverflow.com/a/35420842/7245477 -->
             <div id="camera-selection">
-                <div class="form-check form-switch" th:each="camera : ${formData.allCameras}">
-                    <input name="allCameras" th:value="${camera.name}" type="hidden"/>
-                    <input class="form-check-input"
-                           th:attr="disabled=${#lists.contains(formData.availableCamerasOnRover, camera) ? 'false' : 'disabled'}"
-                           th:field="${formData.selectedCameras}"
-                           th:value="${camera.name}"
-                           type="checkbox">
-                    <label class="form-check-label">
-                        <span th:text="${camera.fullName}"></span>
-                    </label>
-                </div>
-            </div>
-            <!--CAMERAS
-            <div name="cameras">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="fhaz" th:field="${formData.fhaz}" type="checkbox">
-                            <label class="form-check-label" for="fhaz">Front Hazard Avoidance Camera (FHAZ)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="rhaz" th:field="${formData.rhaz}" type="checkbox">
-                            <label class="form-check-label" for="rhaz">Rear Hazard Avoidance Camera (RHAZ)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="mast" th:field="${formData.mast}" type="checkbox">
-                            <label class="form-check-label" for="mast">Mast Camera (MAST)</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="chemcam" th:field="${formData.chemcam}" type="checkbox">
-                            <label class="form-check-label" for="chemcam">Chemistry and Camera Complex (CHEMCAM)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="mahli" th:field="${formData.mahli}" type="checkbox">
-                            <label class="form-check-label" for="mahli">Mars Hand Lens Imager (MAHLI)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="mardi" th:field="${formData.mardi}" type="checkbox">
-                            <label class="form-check-label" for="mardi">Mars Descent Imager (MARDI)</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="navcam" th:field="${formData.navcam}" type="checkbox">
-                            <label class="form-check-label" for="navcam">Navigation Camera (NAVCAM)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="pancam" th:field="${formData.pancam}" type="checkbox">
-                            <label class="form-check-label" for="pancam">Panoramic Camera (PANCAM)</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="minites" th:field="${formData.minites}" type="checkbox">
-                            <label class="form-check-label" for="minites">Miniature Thermal Emission Spectrometer (MINITES)</label>
+                <div class="row"
+                     th:each="cam, row: ${formData.allCameras}"
+                     th:if="${row.count % 3 == 0 or row.last}"
+                     th:with="numList=${ {2,1,0} }">
+
+                    <!-- Show all rows except the leftovers -->
+                    <div class="col-12 col-md-4"
+                         th:each="num : ${numList}"
+                         th:if="${row.count % 3 == 0}"
+                         th:with="dataIndex=(${row.index} - ${num})">
+
+                        <div class="form-check form-switch" th:with="camera=${formData.allCameras[dataIndex]}">
+                            <input name="allCameras" th:value="${camera.name}" type="hidden"/>
+                            <input class="form-check-input"
+                                   th:attr="disabled=${#lists.contains(formData.availableCamerasOnRover, camera) ? 'false' : 'disabled'}"
+                                   th:field="${formData.selectedCameras}"
+                                   th:value="${camera.name}"
+                                   type="checkbox">
+                            <label class="form-check-label">
+                                <span th:text="${camera.fullName}"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
--->
 
             <!-- SOL DAY-->
             <div class="class= col-lg-3 form-group form-group">
@@ -129,7 +83,8 @@
         <div class="row" style="margin-top:2em">
             <button class="btn btn-primary btn-lg">Request Images 🎞</button>
         </div>
-        <!--<p>Found <span th:text="${roverData.photos.size()} images..."></span></p>-->
+        <p>Found <span th:text="${roverData.photos.size()}"></span> images from mars...
+            Try a different rover, day (SOL), or camera.</p>
     </form>
 
     <!-- IMAGES -->
