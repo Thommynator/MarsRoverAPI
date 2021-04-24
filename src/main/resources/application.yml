@@ -10,4 +10,4 @@ spring:
     cache: false # true: web-page is cached, false: web-page will render on every change (good for development)
     prefix: file:src/main/resources/templates/ #directly serve from src folder instead of target
 auth:
-  api_key: <PUT_YOUR_API_KEY_HERE>
+  api_key: DEMO_KEY   # PUT YOUR API KEY HERE
