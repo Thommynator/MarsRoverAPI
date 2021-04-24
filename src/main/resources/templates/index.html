@@ -40,6 +40,7 @@
             </div>
 
             <div class="form-check form-switch" th:each="camera : *{availableCameras}">
+                <input name="availableCameras" th:value="${camera.name}" type="hidden"/>
                 <input class="form-check-input"
                        th:field="*{selectedCameras}"
                        th:value="${camera.name}" type="checkbox">

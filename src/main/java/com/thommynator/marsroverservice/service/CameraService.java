@@ -3,6 +3,7 @@ package com.thommynator.marsroverservice.service;
 import com.thommynator.marsroverservice.model.Camera;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,10 @@ public class CameraService {
 
     public List<Camera> getAvailableCamerasOfRover(String rover) {
         return camerasPerRover.get(rover);
+    }
+
+    public List<Camera> getAllAvailableCameras() {
+        return new ArrayList<>(cameras.values());
     }
 
     public Camera getCameraByName(String name) {

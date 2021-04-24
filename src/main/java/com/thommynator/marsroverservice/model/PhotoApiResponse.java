@@ -9,4 +9,8 @@ import java.util.List;
 public class PhotoApiResponse {
 
     List<Photo> photos = new ArrayList<>();
+
+    public void addPhotos(List<Photo> photosToAdd) {
+        this.photos.addAll(photosToAdd);
+    }
 }
