@@ -16,6 +16,7 @@ public class FormData {
 
     private String rover;
     private Integer sol;
-    private List<Camera> availableCameras;
+    private List<Camera> allCameras;
+    private List<Camera> availableCamerasOnRover;
     private List<Camera> selectedCameras;
 }
