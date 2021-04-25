@@ -1,11 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/mars_rover_db
-    username: root
-    password: my-secret-pw
-  jpa:
-    hibernate:
-      ddl-auto: create
   thymeleaf:
     cache: false # true: web-page is cached, false: web-page will render on every change (good for development)
     prefix: file:src/main/resources/templates/ #directly serve from src folder instead of target
