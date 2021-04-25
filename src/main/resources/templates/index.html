@@ -84,17 +84,29 @@
             <button class="btn btn-primary btn-lg">Request Images 🎞</button>
         </div>
         <p>Found <span th:text="${roverData.photos.size()}"></span> images from mars...
-            Try a different rover, day (SOL), or camera.</p>
+            Try a different rover, day (sol), or camera.</p>
     </form>
 
     <!-- IMAGES -->
     <div class="row"
          style="margin-bottom:1.5em"
-         th:each="rowIndex : ${#numbers.sequence(0, roverData.photos.size()-1, 3)}">
+         th:each="rowIndex : ${#numbers.sequence(0, roverData.photos.size()-1, 4)}">
         <div class="col-sm"
              th:each="colIndex : ${#numbers.sequence(0, 3)}"
              th:if="${ rowIndex + colIndex < roverData.photos.size()}">
-            <img class="img-fluid" th:src="${roverData.photos[(rowIndex + colIndex)].imgSrc}"/>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top img-fluid" th:src="${roverData.photos[(rowIndex + colIndex)].imgSrc}">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Earth Date: <span
+                                th:text="${roverData.photos[(rowIndex + colIndex)].earthDate}"></span>
+                        </li>
+                        <li class="list-group-item">Camera: <span
+                                th:text="${roverData.photos[(rowIndex + colIndex)].camera.fullName}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

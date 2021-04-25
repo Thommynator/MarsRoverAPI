@@ -28,9 +28,11 @@ public class MarsRoverApiService {
         try {
             RestTemplate restTemplate = new RestTemplate();
             PhotoApiResponse response = new PhotoApiResponse();
-            createUrls(formData).stream()
+            createUrls(formData)
                     .forEach(url -> {
-                        List<Photo> photos = Optional.ofNullable(restTemplate.getForEntity(url, PhotoApiResponse.class).getBody()).orElse(new PhotoApiResponse()).getPhotos();
+                        List<Photo> photos = Optional.ofNullable(restTemplate.getForEntity(url, PhotoApiResponse.class).getBody())
+                                .orElse(new PhotoApiResponse()).getPhotos();
+                        photos.forEach(photo -> photo.setImgSrc(photo.getImgSrc().replace("http://", "https://")));
                         response.addPhotos(photos);
                     });
             return response;
