@@ -1,4 +1,4 @@
-# MarsRoverAPI 🚀
+# Mars Rover API 🚀
 
 ## What?
 Visualizes the [NASA Mars Rover API](https://api.nasa.gov/) in a little webservice.
