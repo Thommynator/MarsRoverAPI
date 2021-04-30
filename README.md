@@ -1,5 +1,8 @@
 # Mars Rover API 🚀
 
+![](img/marsrover-icon.png)
+<hr style="width:75%">
+
 ## What?
 Visualizes the [NASA Mars Rover API](https://api.nasa.gov/) in a little webservice.
 
@@ -30,7 +33,7 @@ Discover the NASA images from the mars explorations. You can choose...
 
 ℹ _Application might be in idle mode when not used for some time, i.e. visiting the page for the first the might take some seconds._
 
-![](demo.png)
+![](img/demo.png)
 
 
 - - - - - - - - - - - - - -
